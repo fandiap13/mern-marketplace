@@ -25,7 +25,9 @@ export const signin = async (req, res, next) => {
     if (!validPassword) {
       return next(errorHandler(401, "Wrong credentials!"));
     }
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
     // berarti Anda ingin mengekstrak properti password dari objek, dan menyimpan nilainya dalam variabel pass. Selain itu, menggunakan ...rest untuk menangkap sisa properti dari objek yang tidak dijelaskan secara eksplisit.
 
     // menit 2:31
